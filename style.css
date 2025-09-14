@@ -464,9 +464,19 @@ header h1 {
     }
     
     .task-list li {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+    }
+    
+    .task-list li .task-text {
+        flex: 1;
+        min-width: 0;
+        word-break: break-word;
+    }
+    
+    .task-list li .task-checkbox {
+        flex-shrink: 0;
     }
     
     .delete-btn {
