@@ -59,6 +59,7 @@ todo_app/
 ├── index.html          # 主页面结构
 ├── style.css           # 样式文件
 ├── script.js           # 功能逻辑
+├── LICENSE             # MIT许可证文件
 └── README.md           # 项目说明
 ```
 
