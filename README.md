@@ -1,175 +1,175 @@
-# 待办事项应用
+# To-Do List Application
 
-一个功能完整、界面美观的待办事项管理应用，支持任务管理、状态过滤、数据持久化等功能。
+A complete and beautifully designed to-do list application that supports task management, status filtering, data persistence, and more.
 
-## 功能特性
+## Features
 
-### 📝 任务管理
+### 📝 Task Management
 
-- **添加任务**：快速添加新的待办事项
-- **完成标记**：通过复选框标记任务完成状态
-- **删除任务**：删除不需要的任务项
-- **任务计数**：自动编号显示任务序列
+- **Add Task**: Quickly add new to-do items.
+- **Mark as Complete**: Use checkboxes to mark tasks as complete.
+- **Delete Task**: Remove unnecessary task items.
+- **Task Count**: Automatically number and display the task sequence.
 
-### 🔍 智能过滤
+### 🔍 Smart Filtering
 
-- **全部任务**：查看所有任务
-- **未完成任务**：只显示待完成的任务
-- **已完成任务**：只显示已完成的任务
-- **实时切换**：点击过滤按钮即时切换视图
+- **All Tasks**: View all tasks.
+- **Uncompleted Tasks**: Show only the tasks that are yet to be completed.
+- **Completed Tasks**: Show only the completed tasks.
+- **Real-time Switching**: Instantly switch views by clicking the filter buttons.
 
-### 🗑️ 批量操作
+### 🗑️ Bulk Operations
 
-- **清空已完成**：一键清除所有已完成的任务
-- **清空所有**：清除所有任务（含确认提示）
-- **自定义确认弹窗**：美观的确认对话框，支持键盘操作
+- **Clear Completed**: Clear all completed tasks with one click.
+- **Clear All**: Clear all tasks (with a confirmation prompt).
+- **Custom Confirmation Modal**: An elegant confirmation dialog that supports keyboard operations.
 
-### 💾 数据持久化
+### 💾 Data Persistence
 
-- **本地存储**：使用 localStorage 保存任务数据
-- **自动保存**：任务操作后自动保存到浏览器
-- **数据恢复**：页面刷新后自动恢复之前的任务
-- **数据安全**：输入验证和 XSS 防护
+- **Local Storage**: Use localStorage to save task data.
+- **Auto-save**: Automatically save tasks to the browser after each operation.
+- **Data Recovery**: Automatically restore previous tasks after a page refresh.
+- **Data Security**: Input validation and XSS protection.
 
-### 🎨 用户体验
+### 🎨 User Experience
 
-- **响应式设计**：适配桌面和移动设备
-- **动画效果**：流畅的添加、删除和状态切换动画
-- **通知提示**：操作成功/失败的实时反馈
-- **键盘快捷键**：Ctrl+Enter 快速添加任务
+- **Responsive Design**: Adapts to both desktop and mobile devices.
+- **Animations**: Smooth animations for adding, deleting, and status switching.
+- **Notifications**: Real-time feedback for successful/failed operations.
+- **Keyboard Shortcuts**: Use Ctrl+Enter to quickly add tasks.
 
-## 技术实现
+## Technical Implementation
 
-### 前端技术栈
+### Front-end Technology Stack
 
-- **HTML5**：语义化标签和无障碍设计
-- **CSS3**：现代样式、渐变背景、动画效果
-- **JavaScript (ES6+)**：模块化代码、事件处理、DOM 操作
+- **HTML5**: Semantic tags and accessible design.
+- **CSS3**: Modern styling, gradient backgrounds, and animations.
+- **JavaScript (ES6+)**: Modular code, event handling, and DOM manipulation.
 
-### 核心功能
+### Core Functionality
 
-- **事件委托**：高效的事件处理机制
-- **数据验证**：防止 XSS 攻击和数据污染
-- **错误处理**：完善的异常捕获和用户提示
-- **性能优化**：延迟保存、动画优化
+- **Event Delegation**: Efficient event handling mechanism.
+- **Data Validation**: Prevents XSS attacks and data pollution.
+- **Error Handling**: Comprehensive exception capturing and user prompts.
+- **Performance Optimization**: Delayed saving and animation optimization.
 
-### 数据安全
+### Data Security
 
-- **输入过滤**：HTML 转义防止 XSS 攻击
-- **数据校验**：验证数据类型和格式
-- **长度限制**：防止过长文本影响性能
-- **恶意内容检测**：过滤潜在的危险脚本
+- **Input Filtering**: HTML escaping to prevent XSS attacks.
+- **Data Validation**: Validate data types and formats.
+- **Length Limitation**: Prevent excessively long text from affecting performance.
+- **Malicious Content Detection**: Filter out potentially dangerous scripts.
 
-## 项目结构
+## Project Structure
 
 ```
 todo_app/
-├── index.html          # 主页面结构
-├── style.css           # 样式文件
-├── script.js           # 功能逻辑
-├── LICENSE             # MIT许可证文件
-└── README.md           # 项目说明
+├── index.html          # Main page structure
+├── style.css           # Stylesheet
+├── script.js           # Functional logic
+├── LICENSE             # MIT License file
+└── README.md           # Project description
 ```
 
-## 使用说明
+## Usage Instructions
 
-### 启动应用
+### Launching the Application
 
-1. **本地服务器方式**（推荐）：
+1. **Via a Local Server** (Recommended):
 
    ```bash
-   # 在项目目录下运行
+   # Run in the project directory
    python -m http.server 8000
-   # 然后访问 http://localhost:8000
+   # Then visit http://localhost:8000
    ```
 
-2. **直接打开**：
+2. **Directly Opening**:
    ```bash
-   # 直接在浏览器中打开 index.html 文件
+   # Open the index.html file directly in your browser
    ```
 
-### 基本操作
+### Basic Operations
 
-1. **添加任务**：
+1. **Adding a Task**:
 
-   - 在输入框中输入任务内容
-   - 点击"添加"按钮或按 Ctrl+Enter
+   - Enter the task content in the input box.
+   - Click the "Add" button or press Ctrl+Enter.
 
-2. **管理任务**：
+2. **Managing Tasks**:
 
-   - 点击复选框标记任务完成/未完成
-   - 点击"删除"按钮移除单个任务
-   - 使用过滤按钮查看不同状态的任务
+   - Click the checkbox to mark a task as complete/incomplete.
+   - Click the "Delete" button to remove a single task.
+   - Use the filter buttons to view tasks in different states.
 
-3. **批量操作**：
-   - 点击"清空已完成"清除所有已完成任务
-   - 点击"清空所有"清除全部任务
+3. **Bulk Operations**:
+   - Click "Clear Completed" to remove all completed tasks.
+   - Click "Clear All" to remove all tasks.
 
-### 键盘快捷键
+### Keyboard Shortcuts
 
-- `Ctrl + Enter`：快速添加任务
-- `Esc`：关闭确认弹窗
-- `Tab`：在界面元素间切换
+- `Ctrl + Enter`: Quickly add a task.
+- `Esc`: Close the confirmation modal.
+- `Tab`: Switch between interface elements.
 
-## 浏览器兼容性
+## Browser Compatibility
 
 - ✅ Chrome 60+
 - ✅ Firefox 55+
 - ✅ Safari 12+
 - ✅ Edge 79+
 
-## 特色亮点
+## Highlights
 
-### 🎯 用户体验优先
+### 🎯 User Experience First
 
-- 直观的界面设计
-- 流畅的动画效果
-- 即时的操作反馈
-- 完善的错误提示
+- Intuitive interface design.
+- Smooth animations.
+- Instant operational feedback.
+- Comprehensive error prompts.
 
-### 🛡️ 安全可靠
+### 🛡️ Secure and Reliable
 
-- 数据输入验证
-- XSS 攻击防护
-- 异常处理机制
-- 数据完整性保护
+- Data input validation.
+- XSS attack protection.
+- Exception handling mechanism.
+- Data integrity protection.
 
-### 📱 响应式设计
+### 📱 Responsive Design
 
-- 移动设备适配
-- 触摸友好界面
-- 灵活的布局系统
-- 优化的交互体验
+- Mobile device adaptation.
+- Touch-friendly interface.
+- Flexible layout system.
+- Optimized interactive experience.
 
-### ⚡ 性能优化
+### ⚡ Performance Optimization
 
-- 高效的 DOM 操作
-- 智能的数据保存
-- 优化的动画性能
-- 最小化的资源占用
+- Efficient DOM operations.
+- Smart data saving.
+- Optimized animation performance.
+- Minimized resource consumption.
 
-## 开发说明
+## Development Notes
 
-### 代码结构
+### Code Structure
 
-- **模块化设计**：功能分离，易于维护
-- **事件驱动**：响应式的用户交互
-- **数据驱动**：状态管理和数据同步
-- **组件化思维**：可复用的功能模块
+- **Modular Design**: Separation of functions for easy maintenance.
+- **Event-Driven**: Responsive user interaction.
+- **Data-Driven**: State management and data synchronization.
+- **Component-Based Thinking**: Reusable functional modules.
 
-### 扩展建议
+### Extension Suggestions
 
-- 添加任务分类功能
-- 支持任务优先级设置
-- 实现任务搜索功能
-- 添加任务截止日期
-- 支持数据导入导出
-- 集成云端同步功能
+- Add task categorization functionality.
+- Support task priority setting.
+- Implement task search functionality.
+- Add task due dates.
+- Support data import/export.
+- Integrate cloud synchronization.
 
-## 许可证
+## License
 
-本项目采用 MIT 许可证，详情请参阅 LICENSE 文件。
+This project is licensed under the MIT License. See the LICENSE file for details.
 
 ---
 
-**享受高效的任务管理体验！** 🚀
+**Enjoy an efficient task management experience!** 🚀
