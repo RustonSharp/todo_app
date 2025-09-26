@@ -1,8 +1,8 @@
-// 待办事项应用的JavaScript功能
+// JavaScript functionality for the to-do list application
 
-// 等待DOM加载完成
+// Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取DOM元素
+    // Get DOM elements
     const taskForm = document.getElementById('task-form');
     const taskInput = document.getElementById('task-input');
     const taskList = document.getElementById('task-list');
@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const clearCompletedBtn = document.getElementById('clear-completed');
     const clearAllBtn = document.getElementById('clear-all');
     
-    // 任务计数器和当前过滤状态
+    // Task counter and current filter state
     let taskCounter = 0;
     let currentFilter = 'all';
     
-    // 数据存储键名
+    // Data storage keys
     const STORAGE_KEY = 'todoApp_tasks';
     const COUNTER_KEY = 'todoApp_counter';
     
-    // 保存任务数据到localStorage
+    // Save task data to localStorage
     function saveTasksToStorage() {
         try {
             const tasks = [];
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     tasks.push({
                         text: textElement.textContent.trim(),
                         completed: checkbox ? checkbox.checked : false,
-                        id: Date.now() + Math.random() // 简单的ID生成
+                        id: Date.now() + Math.random() // Simple ID generation
                     });
                 }
             });
@@ -40,12 +40,12 @@ document.addEventListener('DOMContentLoaded', function() {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
             localStorage.setItem(COUNTER_KEY, taskCounter.toString());
         } catch (error) {
-            console.warn('保存任务数据失败:', error);
-            showNotification('数据保存失败，请检查浏览器设置', 'info');
+            console.warn('Failed to save task data:', error);
+            showNotification('Failed to save data, please check browser settings', 'info');
         }
     }
     
-    // 从localStorage加载任务数据
+    // Load task data from localStorage
     function loadTasksFromStorage() {
         try {
             const savedTasks = localStorage.getItem(STORAGE_KEY);
@@ -70,28 +70,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         } catch (error) {
-            console.warn('加载任务数据失败:', error);
-            showNotification('数据加载失败，将从空白开始', 'info');
+            console.warn('Failed to load task data:', error);
+            showNotification('Failed to load data, starting from scratch', 'info');
         }
     }
     
-    // 验证任务数据的安全性
+    // Validate the security of task data
     function validateTaskData(task) {
         if (!task || typeof task !== 'object') {
             return false;
         }
         
-        // 检查必要字段
+        // Check for required fields
         if (typeof task.text !== 'string' || typeof task.completed !== 'boolean') {
             return false;
         }
         
-        // 检查文本长度限制
+        // Check text length limit
         if (task.text.length === 0 || task.text.length > 1000) {
             return false;
         }
         
-        // 检查是否包含潜在的恶意内容
+        // Check for potentially malicious content
         const dangerousPatterns = /<script|javascript:|on\w+=/i;
         if (dangerousPatterns.test(task.text)) {
             return false;
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
     
-    // 恢复单个任务
+    // Restore a single task
     function restoreTask(taskText, isCompleted) {
         taskCounter++;
         
@@ -109,10 +109,10 @@ document.addEventListener('DOMContentLoaded', function() {
         listItem.innerHTML = `
             <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)" ${isCompleted ? 'checked' : ''}>
             <span class="task-text">${escapeHtml(taskText)}</span>
-            <button class="delete-btn" onclick="deleteTask(this)">删除</button>
+            <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
         `;
         
-        // 设置任务状态
+        // Set task status
         listItem.dataset.status = isCompleted ? 'completed' : 'pending';
         
         if (isCompleted) {
@@ -122,70 +122,70 @@ document.addEventListener('DOMContentLoaded', function() {
         taskList.appendChild(listItem);
     }
     
-    // 监听表单提交事件
+    // Listen for form submission event
     taskForm.addEventListener('submit', function(e) {
-        // 阻止表单默认提交行为
+        // Prevent the form's default submission behavior
         e.preventDefault();
         
-        // 获取输入框的值并去除首尾空格
+        // Get the input value and remove leading/trailing spaces
         const taskText = taskInput.value.trim();
         
-        // 检查输入是否为空
+        // Check if the input is empty
         if (taskText === '') {
-            alert('请输入待办事项内容！');
+            alert('Please enter a to-do item!');
             return;
         }
         
-        // 创建新的待办事项
+        // Create a new to-do item
         addTask(taskText);
         
-        // 清空输入框
+        // Clear the input field
         taskInput.value = '';
         
-        // 让输入框重新获得焦点
+        // Set focus back to the input field
         taskInput.focus();
     });
     
-    // 添加待办事项函数
+    // Function to add a to-do item
     function addTask(taskText) {
-        // 增加任务计数
+        // Increment the task counter
         taskCounter++;
         
-        // 创建新的li元素
+        // Create a new li element
         const listItem = document.createElement('li');
         
-        // 设置li的内容
+        // Set the content of the li
         listItem.innerHTML = `
             <input type="checkbox" class="task-checkbox" onchange="toggleTask(this)">
             <span class="task-text">${escapeHtml(taskText)}</span>
-            <button class="delete-btn" onclick="deleteTask(this)">删除</button>
+            <button class="delete-btn" onclick="deleteTask(this)">Delete</button>
         `;
         
-        // 设置任务状态
+        // Set the task status
         listItem.dataset.status = 'pending';
         
-        // 为新添加的任务项添加动画效果
+        // Add animation effect for the newly added task item
         listItem.style.opacity = '0';
         listItem.style.transform = 'translateY(-10px)';
         
-        // 将新的li添加到任务列表中
+        // Add the new li to the task list
         taskList.appendChild(listItem);
         
-        // 添加淡入动画
+        // Add fade-in animation
         setTimeout(() => {
             listItem.style.transition = 'all 0.3s ease';
             listItem.style.opacity = '1';
             listItem.style.transform = 'translateY(0)';
         }, 10);
         
-        // 显示成功提示
-        showNotification('任务添加成功！', 'success');
+        // Show success notification
+        showNotification('Task added successfully!', 'success');
         
-        // 保存数据到localStorage
+        // Save data to localStorage
         saveTasksToStorage();
     }
     
-    // 切换任务完成状态函数（全局函数，供HTML调用）
+    // Function to toggle task completion status (global function for HTML to call)
     window.toggleTask = function(checkbox) {
         const listItem = checkbox.parentElement;
         const isCompleted = checkbox.checked;
@@ -193,93 +193,93 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isCompleted) {
             listItem.classList.add('completed');
             listItem.dataset.status = 'completed';
-            showNotification('任务已完成！', 'success');
+            showNotification('Task completed!', 'success');
         } else {
             listItem.classList.remove('completed');
             listItem.dataset.status = 'pending';
-            showNotification('任务已标记为未完成！', 'info');
+            showNotification('Task marked as pending!', 'info');
         }
         
-        // 重新应用当前过滤器
+        // Re-apply the current filter
         applyFilter(currentFilter);
         
-        // 保存数据到localStorage
+        // Save data to localStorage
         saveTasksToStorage();
     };
     
-    // 删除待办事项函数（全局函数，供HTML调用）
+    // Function to delete a to-do item (global function for HTML to call)
     window.deleteTask = function(button) {
         const listItem = button.parentElement;
         
-        // 添加删除动画
+        // Add delete animation
         listItem.style.transition = 'all 0.3s ease';
         listItem.style.opacity = '0';
         listItem.style.transform = 'translateX(-100%)';
         
-        // 动画完成后移除元素
+        // Remove the element after the animation completes
         setTimeout(() => {
             listItem.remove();
-            showNotification('任务已删除！', 'info');
+            showNotification('Task deleted!', 'info');
             
-            // 保存数据到localStorage
+            // Save data to localStorage
             saveTasksToStorage();
         }, 300);
     };
     
-    // HTML转义函数，防止XSS攻击
+    // HTML escape function to prevent XSS attacks
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
     
-    // 自定义确认弹窗函数
+    // Custom confirmation modal function
     function showConfirmModal(title, message) {
         return new Promise((resolve) => {
-            // 创建弹窗HTML结构
+            // Create the modal HTML structure
             const modalHTML = `
                 <div class="modal-overlay" id="confirmModal">
                     <div class="modal-content">
                         <h3 class="modal-title">${escapeHtml(title)}</h3>
                         <p class="modal-message">${escapeHtml(message)}</p>
                         <div class="modal-buttons">
-                            <button class="modal-btn modal-btn-cancel" id="modalCancel">取消</button>
-                            <button class="modal-btn modal-btn-confirm" id="modalConfirm">确认</button>
+                            <button class="modal-btn modal-btn-cancel" id="modalCancel">Cancel</button>
+                            <button class="modal-btn modal-btn-confirm" id="modalConfirm">Confirm</button>
                         </div>
                     </div>
                 </div>
             `;
             
-            // 添加弹窗到页面
+            // Add the modal to the page
             document.body.insertAdjacentHTML('beforeend', modalHTML);
             
             const modal = document.getElementById('confirmModal');
             const confirmBtn = document.getElementById('modalConfirm');
             const cancelBtn = document.getElementById('modalCancel');
             
-            // 显示弹窗
+            // Show the modal
             setTimeout(() => {
                 modal.classList.add('show');
             }, 10);
             
-            // 处理确认按钮点击
+            // Handle confirm button click
             confirmBtn.addEventListener('click', () => {
                 hideModal(modal, () => resolve(true));
             });
             
-            // 处理取消按钮点击
+            // Handle cancel button click
             cancelBtn.addEventListener('click', () => {
                 hideModal(modal, () => resolve(false));
             });
             
-            // 点击遮罩层关闭弹窗
+            // Close the modal when clicking on the overlay
             modal.addEventListener('click', (e) => {
                 if (e.target === modal) {
                     hideModal(modal, () => resolve(false));
                 }
             });
             
-            // ESC键关闭弹窗
+            // Close the modal with the ESC key
             const handleEscape = (e) => {
                 if (e.key === 'Escape') {
                     hideModal(modal, () => resolve(false));
@@ -288,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             document.addEventListener('keydown', handleEscape);
             
-            // 隐藏弹窗函数
+            // Function to hide the modal
             function hideModal(modal, callback) {
                 modal.classList.remove('show');
                 setTimeout(() => {
@@ -299,14 +299,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 显示通知函数
+    // Function to show notifications
     function showNotification(message, type = 'info') {
-        // 创建通知元素
+        // Create the notification element
         const notification = document.createElement('div');
         notification.className = `notification notification-${type}`;
         notification.textContent = message;
         
-        // 设置通知样式
+        // Set notification styles
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: all 0.3s ease;
         `;
         
-        // 根据类型设置背景色
+        // Set background color based on type
         if (type === 'success') {
             notification.style.background = '#28a745';
         } else if (type === 'info') {
@@ -330,21 +330,21 @@ document.addEventListener('DOMContentLoaded', function() {
             notification.style.background = '#6c757d';
         }
         
-        // 添加到页面
+        // Add to the page
         document.body.appendChild(notification);
         
-        // 显示动画
+        // Show animation
         setTimeout(() => {
             notification.style.opacity = '1';
             notification.style.transform = 'translateX(0)';
         }, 10);
         
-        // 3秒后自动隐藏
+        // Auto-hide after 3 seconds
         setTimeout(() => {
             notification.style.opacity = '0';
             notification.style.transform = 'translateX(100%)';
             
-            // 动画完成后移除元素
+            // Remove the element after the animation completes
             setTimeout(() => {
                 if (notification.parentNode) {
                     notification.parentNode.removeChild(notification);
@@ -353,15 +353,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 3000);
     }
     
-    // 键盘快捷键支持
+    // Keyboard shortcut support
     document.addEventListener('keydown', function(e) {
-        // Ctrl + Enter 快速添加任务
+        // Ctrl + Enter to quickly add a task
         if (e.ctrlKey && e.key === 'Enter') {
             taskForm.dispatchEvent(new Event('submit'));
         }
     });
     
-    // 过滤任务函数
+    // Function to filter tasks
     function applyFilter(filter) {
         const tasks = taskList.querySelectorAll('li');
         
@@ -389,33 +389,33 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // 过滤按钮事件监听
+    // Event listener for filter buttons
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // 移除所有按钮的active类
+            // Remove the active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
             
-            // 为当前按钮添加active类
+            // Add the active class to the current button
             this.classList.add('active');
             
-            // 获取过滤类型并应用
+            // Get the filter type and apply it
             currentFilter = this.dataset.filter;
             applyFilter(currentFilter);
         });
     });
     
-    // 清空已完成任务按钮事件监听
+    // Event listener for the clear completed tasks button
     clearCompletedBtn.addEventListener('click', async function() {
         const completedTasks = taskList.querySelectorAll('li[data-status="completed"]');
         
         if (completedTasks.length === 0) {
-            showNotification('没有已完成的任务需要清空！', 'info');
+            showNotification('No completed tasks to clear!', 'info');
             return;
         }
         
         const confirmed = await showConfirmModal(
-            '清空已完成任务',
-            `确定要清空 ${completedTasks.length} 个已完成的任务吗？`
+            'Clear Completed Tasks',
+            `Are you sure you want to clear ${completedTasks.length} completed tasks?`
         );
         
         if (confirmed) {
@@ -429,27 +429,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 300);
             });
             
-            showNotification(`已清空 ${completedTasks.length} 个已完成任务！`, 'success');
+            showNotification(`Cleared ${completedTasks.length} completed tasks!`, 'success');
             
-            // 延迟保存数据，确保DOM更新完成
+            // Delay saving data to ensure DOM update is complete
             setTimeout(() => {
                 saveTasksToStorage();
             }, 350);
         }
     });
     
-    // 清空所有任务按钮事件监听
+    // Event listener for the clear all tasks button
     clearAllBtn.addEventListener('click', async function() {
         const allTasks = taskList.querySelectorAll('li');
         
         if (allTasks.length === 0) {
-            showNotification('没有任务需要清空！', 'info');
+            showNotification('No tasks to clear!', 'info');
             return;
         }
         
         const confirmed = await showConfirmModal(
-            '清空所有任务',
-            `确定要清空所有 ${allTasks.length} 个任务吗？此操作不可撤销！`
+            'Clear All Tasks',
+            `Are you sure you want to clear all ${allTasks.length} tasks? This action cannot be undone!`
         );
         
         if (confirmed) {
@@ -460,24 +460,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 setTimeout(() => {
                     task.remove();
-                }, 300 + index * 50); // 添加延迟效果
+                }, 300 + index * 50); // Add delay effect
             });
             
-            // 重置任务计数器
+            // Reset the task counter
             taskCounter = 0;
             
-            showNotification(`已清空所有 ${allTasks.length} 个任务！`, 'success');
+            showNotification(`Cleared all ${allTasks.length} tasks!`, 'success');
             
-            // 延迟保存数据，确保DOM更新完成
+            // Delay saving data to ensure DOM update is complete
             setTimeout(() => {
                 saveTasksToStorage();
             }, 350 + allTasks.length * 50);
         }
     });
     
-    // 页面加载完成后加载保存的任务数据
+    // Load saved task data after the page is loaded
     loadTasksFromStorage();
     
-    // 让输入框获得焦点
+    // Set focus to the input field
     taskInput.focus();
 });

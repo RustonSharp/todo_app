@@ -1,4 +1,4 @@
-/* 重置和基础样式 */
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +14,7 @@ body {
     padding: 20px;
 }
 
-/* 主容器样式 */
+/* Main container styles */
 main {
     max-width: 800px;
     margin: 0 auto;
@@ -24,7 +24,7 @@ main {
     overflow: hidden;
 }
 
-/* 头部样式 */
+/* Header styles */
 header {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     color: white;
@@ -38,7 +38,7 @@ header h1 {
     letter-spacing: 1px;
 }
 
-/* 添加任务区域 */
+/* Add task section */
 .add-task-section {
     padding: 30px;
     background: #f8f9fa;
@@ -57,7 +57,7 @@ header h1 {
     gap: 10px;
 }
 
-/* 输入框样式 */
+/* Input field styles */
 #task-input {
     flex: 1;
     padding: 15px 20px;
@@ -77,7 +77,7 @@ header h1 {
     color: #6c757d;
 }
 
-/* 添加按钮样式 */
+/* Add button styles */
 .add-btn {
     padding: 15px 25px;
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
@@ -100,7 +100,7 @@ header h1 {
     transform: translateY(0);
 }
 
-/* 任务列表区域 */
+/* Task list section */
 .task-list-section {
     padding: 30px;
 }
@@ -121,7 +121,7 @@ header h1 {
     margin: 0;
 }
 
-/* 过滤按钮样式 */
+/* Filter button styles */
 .filter-buttons {
     display: flex;
     gap: 8px;
@@ -156,7 +156,7 @@ header h1 {
     box-shadow: 0 3px 8px rgba(79, 172, 254, 0.3);
 }
 
-/* 任务列表样式 */
+/* Task list styles */
 .task-list {
     list-style: none;
     counter-reset: task-counter;
@@ -217,7 +217,7 @@ header h1 {
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 任务复选框样式 */
+/* Task checkbox styles */
 .task-checkbox {
     width: 18px;
     height: 18px;
@@ -233,7 +233,7 @@ header h1 {
     transition: all 0.3s ease;
 }
 
-/* 删除按钮样式 */
+/* Delete button styles */
 .delete-btn {
     background: #dc3545;
     color: white;
@@ -255,7 +255,7 @@ header h1 {
     transform: scale(1.05);
 }
 
-/* 空状态样式 */
+/* Empty state styles */
 .empty-state {
     text-align: center;
     padding: 40px 20px;
@@ -263,7 +263,7 @@ header h1 {
     font-style: italic;
 }
 
-/* 清空按钮区域样式 */
+/* Clear buttons section styles */
 .clear-buttons {
     display: flex;
     justify-content: center;
@@ -313,7 +313,7 @@ header h1 {
     transform: translateY(0);
 }
 
-/* 自定义确认弹窗样式 */
+/* Custom confirmation modal styles */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -408,7 +408,7 @@ header h1 {
     transform: translateY(0);
 }
 
-/* 屏幕阅读器专用 */
+/* Screen reader only */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -421,7 +421,7 @@ header h1 {
     border: 0;
 }
 
-/* 响应式设计 */
+/* Responsive design */
 @media (max-width: 768px) {
     body {
         padding: 10px;

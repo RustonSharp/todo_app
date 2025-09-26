@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>待办事项应用</title>
+    <title>Todo App</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>我的待办事项</h1>
+        <h1>My Todos</h1>
     </header>
     
     <main>
         <section class="add-task-section">
             <form id="task-form" class="task-form">
                 <div class="input-group">
-                    <label for="task-input" class="sr-only">输入新任务</label>
+                    <label for="task-input" class="sr-only">Enter a new task</label>
                     <input 
                         type="text" 
                         id="task-input" 
                         name="task" 
-                        placeholder="输入新任务..." 
+                        placeholder="Enter a new task..." 
                         required
                         autocomplete="off"
                     >
-                    <button type="submit" class="add-btn">添加</button>
+                    <button type="submit" class="add-btn">Add</button>
                 </div>
             </form>
         </section>
         
         <section class="task-list-section">
             <div class="task-header">
-                <h2>任务列表</h2>
+                <h2>Task List</h2>
                 <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">全部</button>
-                    <button class="filter-btn" data-filter="pending">未完成</button>
-                    <button class="filter-btn" data-filter="completed">已完成</button>
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
                 </div>
             </div>
             <ol id="task-list" class="task-list">
-                <!-- 待办事项将在这里动态添加 -->
+                <!-- Todo items will be dynamically added here -->
             </ol>
             <div class="clear-buttons">
-                <button class="clear-btn clear-completed" id="clear-completed">清空已完成</button>
-                <button class="clear-btn clear-all" id="clear-all">清空所有</button>
+                <button class="clear-btn clear-completed" id="clear-completed">Clear Completed</button>
+                <button class="clear-btn clear-all" id="clear-all">Clear All</button>
             </div>
         </section>
     </main>
